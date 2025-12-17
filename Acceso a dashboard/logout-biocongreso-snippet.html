@@ -1,0 +1,178 @@
+<style>
+    .biocongreso-logout-form {
+        background: #FFFFFF;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(26, 35, 50, 0.15);
+        max-width: 450px;
+        width: 100%;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+
+    .biocongreso-logout-form .login-header {
+        background: linear-gradient(135deg, #1a2332 0%, #2a3f5f 100%);
+        padding: 40px 30px;
+        text-align: center;
+        color: #FFFFFF;
+    }
+
+    .biocongreso-logout-form .login-header h1 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: #FFFFFF;
+    }
+
+    .biocongreso-logout-form .login-header p {
+        font-size: 14px;
+        opacity: 0.9;
+        color: #FFFFFF;
+    }
+
+    /* Tabs Navigation */
+    .tabs-navigation {
+        display: flex;
+        border-bottom: 2px solid #e5e7eb;
+        background: #f9fafb;
+    }
+
+    .tab-button {
+        flex: 1;
+        padding: 16px 20px;
+        background: transparent;
+        border: none;
+        font-size: 15px;
+        font-weight: 600;
+        color: #6b7280;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .tab-button:hover {
+        color: #1a2332;
+        background: #f3f4f6;
+    }
+
+    .tab-button.active {
+        color: #1a2332;
+        background: #FFFFFF;
+    }
+
+    .tab-button.active::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(135deg, #1a2332 0%, #FFC107 100%);
+    }
+
+    /* Tab Content */
+    .tab-content {
+        display: none;
+        padding: 40px 30px;
+        animation: fadeIn 0.3s ease;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .biocongreso-logout-form .login-instructions {
+        text-align: center;
+        color: #6b7280;
+        margin-bottom: 24px;
+        font-size: 15px;
+    }
+
+    @media (max-width: 480px) {
+        .biocongreso-logout-form {
+            border-radius: 12px;
+        }
+
+        .biocongreso-logout-form .login-header {
+            padding: 30px 20px;
+        }
+
+        .biocongreso-logout-form .login-header h1 {
+            font-size: 24px;
+        }
+
+        .tab-content {
+            padding: 30px 20px;
+        }
+
+        .tab-button {
+            padding: 14px 16px;
+            font-size: 14px;
+        }
+    }
+</style>
+
+<div class="biocongreso-logout-form">
+    <div class="login-header">
+        <h1>BioCongreso</h1>
+        <p>Accede a todo el contenido del evento</p>
+    </div>
+
+    <!-- Tabs Navigation -->
+    <div class="tabs-navigation">
+        <button class="tab-button active" onclick="switchTab('login')">
+            Iniciar Sesión
+        </button>
+        <button class="tab-button" onclick="switchTab('register')">
+            Registrarse
+        </button>
+    </div>
+
+    <!-- Tab Content: Login -->
+    <div id="login-tab" class="tab-content active">
+        <p class="login-instructions">
+            Ingresa tu correo y contraseña para acceder a tu dashboard
+        </p>
+        [ultimatemember form_id="23"]
+    </div>
+
+    <!-- Tab Content: Register -->
+    <div id="register-tab" class="tab-content">
+        <p class="login-instructions">
+            Crea tu cuenta para acceder al contenido del BioCongreso
+        </p>
+        [ultimatemember form_id="22"]
+    </div>
+</div>
+
+<script>
+    function switchTab(tabName) {
+        // Ocultar todos los tabs
+        const allTabs = document.querySelectorAll('.tab-content');
+        allTabs.forEach(tab => tab.classList.remove('active'));
+
+        // Desactivar todos los botones
+        const allButtons = document.querySelectorAll('.tab-button');
+        allButtons.forEach(button => button.classList.remove('active'));
+
+        // Activar el tab seleccionado
+        if (tabName === 'login') {
+            document.getElementById('login-tab').classList.add('active');
+            document.querySelectorAll('.tab-button')[0].classList.add('active');
+        } else if (tabName === 'register') {
+            document.getElementById('register-tab').classList.add('active');
+            document.querySelectorAll('.tab-button')[1].classList.add('active');
+        }
+    }
+</script>

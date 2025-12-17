@@ -1,0 +1,98 @@
+<style>
+    .biocongreso-login-welcome {
+        background: #FFFFFF;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(26, 35, 50, 0.15);
+        max-width: 500px;
+        width: 100%;
+        text-align: center;
+        padding: 60px 40px;
+        margin: 0 auto;
+    }
+
+    .biocongreso-login-welcome .welcome-icon {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 32px;
+        background: linear-gradient(135deg, #1a2332 0%, #2a3f5f 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .biocongreso-login-welcome .welcome-icon svg {
+        width: 50px;
+        height: 50px;
+        stroke: #FFFFFF;
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+    .biocongreso-login-welcome h1 {
+        font-size: 32px;
+        font-weight: 700;
+        color: #1a2332;
+        margin-bottom: 16px;
+    }
+
+    .biocongreso-login-welcome p {
+        font-size: 18px;
+        color: #6b7280;
+        margin-bottom: 40px;
+        line-height: 1.6;
+    }
+
+    .biocongreso-login-welcome .btn-dashboard {
+        display: inline-block;
+        background: linear-gradient(135deg, #1a2332 0%, #2a3f5f 100%);
+        color: #FFFFFF;
+        padding: 16px 48px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(26, 35, 50, 0.2);
+    }
+
+    .biocongreso-login-welcome .btn-dashboard:hover {
+        background: #FFC107;
+        color: #1a2332;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(255, 193, 7, 0.3);
+    }
+
+    @media (max-width: 480px) {
+        .biocongreso-login-welcome {
+            padding: 50px 30px;
+        }
+
+        .biocongreso-login-welcome h1 {
+            font-size: 28px;
+        }
+
+        .biocongreso-login-welcome p {
+            font-size: 16px;
+        }
+
+        .biocongreso-login-welcome .btn-dashboard {
+            padding: 14px 40px;
+            font-size: 15px;
+        }
+    }
+</style>
+
+<div class="biocongreso-login-welcome">
+    <div class="welcome-icon">
+        <svg viewBox="0 0 24 24">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+        </svg>
+    </div>
+    <h1>¡Empecemos a Aprender!</h1>
+    <p>Bienvenido de nuevo. Tu dashboard está listo para acceder a toda la información del evento.</p>
+    <a href="https://panel.biocongreso.com/usuario/" class="btn-dashboard">Ir al Dashboard</a>
+</div>

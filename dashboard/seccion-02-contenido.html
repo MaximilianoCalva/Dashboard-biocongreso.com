@@ -1,0 +1,525 @@
+<style>
+    /* Variables de colores BioCongreso */
+    :root {
+        --biocongreso-primary-dark: #1a2332;
+        --biocongreso-primary-medium: #2a3f5f;
+        --biocongreso-accent: #FFC107;
+        --biocongreso-white: #FFFFFF;
+    }
+
+    /* SECCIÓN 02: CONTENIDO PRINCIPAL */
+    .content-header {
+        background: white;
+        border-radius: 20px;
+        padding: 32px;
+        margin-bottom: 24px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .content-header h1 {
+        font-size: 32px;
+        font-weight: 700;
+        color: #1a2332;
+        margin-bottom: 8px;
+    }
+
+    .content-header p {
+        color: #86868b;
+        font-size: 16px;
+        margin: 0;
+    }
+
+    .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 24px;
+    }
+
+    .card {
+        background: white;
+        border-radius: 20px;
+        padding: 28px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(135deg, #1a2332 0%, #FFC107 100%);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 40px rgba(26, 35, 50, 0.15);
+        border-color: #FFC107;
+    }
+
+    .card:hover::before {
+        transform: scaleX(1);
+    }
+
+    .card-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #1a2332 0%, #2a3f5f 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        box-shadow: 0 8px 20px rgba(26, 35, 50, 0.3);
+    }
+
+    .card-icon i {
+        font-size: 24px;
+        color: #FFC107;
+    }
+
+    .card h3 {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: #1a2332;
+    }
+
+    .card p {
+        color: #86868b;
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .card-meta {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+
+    .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        color: #86868b;
+    }
+
+    .meta-item i {
+        color: #FFC107;
+    }
+
+    .card-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        background: linear-gradient(135deg, #1a2332 0%, #2a3f5f 100%);
+        color: white;
+        text-decoration: none;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+    }
+
+    .card-button:hover {
+        background: #FFC107;
+        color: #1a2332;
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(255, 193, 7, 0.4);
+    }
+
+    /* Card destacada (principal) */
+    .card.featured {
+        grid-column: span 2;
+        background: linear-gradient(135deg, #1a2332 0%, #2a3f5f 100%);
+        color: white;
+    }
+
+    .card.featured h3 {
+        color: #FFC107;
+        font-size: 24px;
+    }
+
+    .card.featured p {
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .card.featured .card-icon {
+        background: rgba(255, 193, 7, 0.2);
+    }
+
+    .card.featured .meta-item {
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .card.featured .meta-item i {
+        color: #FFC107;
+    }
+
+    .card.featured .card-button {
+        background: #FFC107;
+        color: #1a2332;
+    }
+
+    .card.featured .card-button:hover {
+        background: #FFD54F;
+        transform: scale(1.05);
+    }
+
+    @media (max-width: 1200px) {
+        .card.featured {
+            grid-column: span 1;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .cards-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<!-- SECCIÓN 02: CONTENIDO PRINCIPAL -->
+<main class="main-content">
+    <div class="content-header">
+        <h1>Dashboard BioCongreso</h1>
+        <p>Accede a todo el contenido del 5to BioCongreso</p>
+    </div>
+
+    <div class="cards-grid">
+        <!-- Card Principal: 5to BioCongreso -->
+        <article class="card featured">
+            <div class="card-icon">
+                <i class="fas fa-star"></i>
+            </div>
+            <h3>5TO BIOCONGRESO: SANAR EMOCIONAL</h3>
+            <p>Revive la experiencia de transformación más profunda del 2025. En esta quinta edición, titulada
+                "Sanar Emocional", el Instituto de Biodesprogramación de Fernando Sánchez creó un espacio único
+                para profundizar en las heridas que bloquean tu bienestar y encontrar el camino hacia la
+                liberación definitiva.</p>
+            <div class="card-meta">
+                <span class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    21-22 Noviembre 2025
+                </span>
+                <span class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    15+ horas de contenido
+                </span>
+                <span class="meta-item">
+                    <i class="fas fa-users"></i>
+                    14 conferencias
+                </span>
+            </div>
+            <a href="https://panel.biocongreso.com/courses/5to-biocongreso-21-y-22-de-noviembre-2025/"
+                class="card-button">
+                Ver Contenido Completo
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </article>
+
+        <!-- Card 1: María de la O -->
+        <article class="card">
+            <div class="card-icon">
+                <i class="fas fa-microphone"></i>
+            </div>
+            <h3>Presentación</h3>
+            <p>María de la O da la bienvenida al 5to BioCongreso y presenta el tema central: Sanar Emocional.</p>
+            <div class="card-meta">
+                <span class="meta-item">
+                    <i class="fas fa-user"></i>
+                    María de la O
+                </span>
+            </div>
+            <a href="https://panel.biocongreso.com/courses/5to-biocongreso-21-y-22-de-noviembre-2025/"
+                class="card-button">
+                Ver conferencia
+                <i class="fas fa-play"></i>
+            </a>
+        </article>
+
+        <!-- Card 2: Osmary Acebal -->
+        <article class="card">
+            <div class="card-icon">
+                <i class="fas fa-brain"></i>
+            </div>
+            <h3>La Magia del Placebo</h3>
+            <p>Descubre el poder de tu inconsciente y cómo el efecto placebo puede transformar tu salud y
+                bienestar con Osmary Acebal.</p>
+            <div class="card-meta">
+                <span class="meta-item">
+                    <i class="fas fa-user"></i>
+                    Osmary Acebal
+                </span>
+            </div>
+            <a href="https://panel.biocongreso.com/courses/5to-biocongreso-21-y-22-de-noviembre-2025/"
+                class="card-button">
+                Ver conferencia
+                <i class="fas fa-play"></i>
+            </a>
+        </article>
+
+        <!-- Card 3: Gilma Barragan -->
+        <article class="card">
+            <div class="card-icon">
+                <i class="fas fa-eye"></i>
+            </div>
+            <h3>Despertar de la Conciencia</h3>
+            <p>¿Qué parte de tu vida es real? Gilma Barragan te invita a un profundo despertar de conciencia y
+                autoconocimiento.</p>
+            <div class="card-meta">
+                <span class="meta-item">
+                    <i class="fas fa-user"></i>
+                    Gilma Barragan
+                </span>
+            </div>
+            <a href="https://panel.biocongreso.com/courses/5to-biocongreso-21-y-22-de-noviembre-2025/"
+                class="card-button">
+                Ver conferencia
+                <i class="fas fa-play"></i>
+            </a>
+        </article>
+
+        <!-- Card 4: Luz María Zetina -->
+        <article class="card">
+            <div class="card-icon">
+                <i class="fas fa-theater-masks"></i>
+            </div>
+            <h3>Más Allá de la Historia</h3>
+            <p>Monólogo emotivo y transformador de Luz María Zetina que te invita a reflexionar sobre tu propia
+                historia de vida.</p>
+            <div class="card-meta">
+                <span class="meta-item">
+                    <i class="fas fa-user"></i>
+                    Luz María Zetina
+                </span>
+            </div>
+            <a href="https://panel.biocongreso.com/courses/5to-biocongreso-21-y-22-de-noviembre-2025/"
+                class="card-button">
+                Ver conferencia
+                <i class="fas fa-play"></i>
+            </a>
+        </article>
+
+        <!-- Card 5: Paty Bens - Día 1 -->
+        <article class="card">
+            <div class="card-icon">
+                <i class="fas fa-hands"></i>
+            </div>
+            <h3>Ejercicio Práctico - Día 1</h3>
+            <p>Ejercicio guiado por Paty Bens para conectar con tus emociones y liberar bloqueos del primer día.</p>
+            <div class="card-meta">
+                <span class="meta-item">
+                    <i class="fas fa-user"></i>
+                    Paty Bens
+                </span>
+            </div>
+            <a href="https://panel.biocongreso.com/courses/5to-biocongreso-21-y-22-de-noviembre-2025/"
+                class="card-button">
+                Ver conferencia
+                <i class="fas fa-play"></i>
+            </a>
+        </article>
+
+        <!-- Card 6: Denisse Jiménez -->
+        <article class="card">
+            <div class="card-icon">
+                <i class="fas fa-spa"></i>
+            </div>
+            <h3>Ejercicio Práctico - Día 2</h3>
+            <p>Ejercicio de integración guiado por Denisse Jiménez para profundizar en tu proceso de sanación.</p>
+            <div class="card-meta">
+                <span class="meta-item">
+                    <i class="fas fa-user"></i>
+                    Denisse Jiménez
+                </span>
+            </div>
+            <a href="https://panel.biocongreso.com/courses/5to-biocongreso-21-y-22-de-noviembre-2025/"
+                class="card-button">
+                Ver conferencia
+                <i class="fas fa-play"></i>
+            </a>
+        </article>
+
+        <!-- Card 7: Laura García -->
+        <article class="card">
+            <div class="card-icon">
+                <i class="fas fa-running"></i>
+            </div>
+            <h3>Des-aprender con Todo tu Cuerpo</h3>
+            <p>Laura García te enseña técnicas corporales para liberar patrones limitantes y des-aprender creencias que
+                te bloquean.</p>
+            <div class="card-meta">
+                <span class="meta-item">
+                    <i class="fas fa-user"></i>
+                    Laura García
+                </span>
+            </div>
+            <a href="https://panel.biocongreso.com/courses/5to-biocongreso-21-y-22-de-noviembre-2025/"
+                class="card-button">
+                Ver conferencia
+                <i class="fas fa-play"></i>
+            </a>
+        </article>
+
+        <!-- Card 8: Ivette Ferrer -->
+        <article class="card">
+            <div class="card-icon">
+                <i class="fas fa-user-md"></i>
+            </div>
+            <h3>Hipnosis Biológica Integrativa</h3>
+            <p>Ivette Ferrer presenta una estrategia terapéutica innovadora que combina hipnosis y biodesprogramación
+                para la sanación emocional.</p>
+            <div class="card-meta">
+                <span class="meta-item">
+                    <i class="fas fa-user"></i>
+                    Ivette Ferrer
+                </span>
+            </div>
+            <a href="https://panel.biocongreso.com/courses/5to-biocongreso-21-y-22-de-noviembre-2025/"
+                class="card-button">
+                Ver conferencia
+                <i class="fas fa-play"></i>
+            </a>
+        </article>
+
+        <!-- Card 9: Mary Zamacona -->
+        <article class="card">
+            <div class="card-icon">
+                <i class="fas fa-dove"></i>
+            </div>
+            <h3>Cuando el Alma Llora en Silencio</h3>
+            <p>Mary Zamacona te ayuda a comprender el duelo y los procesos de sanación del alma en momentos de pérdida.
+            </p>
+            <div class="card-meta">
+                <span class="meta-item">
+                    <i class="fas fa-user"></i>
+                    Mary Zamacona
+                </span>
+            </div>
+            <a href="https://panel.biocongreso.com/courses/5to-biocongreso-21-y-22-de-noviembre-2025/"
+                class="card-button">
+                Ver conferencia
+                <i class="fas fa-play"></i>
+            </a>
+        </article>
+
+        <!-- Card 10: Benito Agrega -->
+        <article class="card">
+            <div class="card-icon">
+                <i class="fas fa-shapes"></i>
+            </div>
+            <h3>Geometría Sagrada</h3>
+            <p>Benito Agrega revela los patrones universales de la geometría sagrada que conectan cuerpo, mente y
+                espíritu.</p>
+            <div class="card-meta">
+                <span class="meta-item">
+                    <i class="fas fa-user"></i>
+                    Benito Agrega
+                </span>
+            </div>
+            <a href="https://panel.biocongreso.com/courses/5to-biocongreso-21-y-22-de-noviembre-2025/"
+                class="card-button">
+                Ver conferencia
+                <i class="fas fa-play"></i>
+            </a>
+        </article>
+
+        <!-- Card 11: Iván Martz -->
+        <article class="card">
+            <div class="card-icon">
+                <i class="fas fa-heart"></i>
+            </div>
+            <h3>Gestión Emocional para una Vida Más Plena</h3>
+            <p>Aprende herramientas prácticas de gestión emocional de la mano de Iván Martz para vivir con mayor
+                plenitud y bienestar.</p>
+            <div class="card-meta">
+                <span class="meta-item">
+                    <i class="fas fa-user"></i>
+                    Iván Martz
+                </span>
+            </div>
+            <a href="https://panel.biocongreso.com/courses/5to-biocongreso-21-y-22-de-noviembre-2025/"
+                class="card-button">
+                Ver conferencia
+                <i class="fas fa-play"></i>
+            </a>
+        </article>
+
+        <!-- Card 12: Fernando Sánchez -->
+        <article class="card">
+            <div class="card-icon">
+                <i class="fas fa-project-diagram"></i>
+            </div>
+            <h3>Árbol Transgeneracional: ¿Cómo me libero?</h3>
+            <p>Fernando Sánchez te guía para identificar los conflictos biológicos y las lealtades familiares
+                que impactan tu salud y emociones.</p>
+            <div class="card-meta">
+                <span class="meta-item">
+                    <i class="fas fa-user"></i>
+                    Fernando Sánchez
+                </span>
+            </div>
+            <a href="https://panel.biocongreso.com/courses/5to-biocongreso-21-y-22-de-noviembre-2025/"
+                class="card-button">
+                Ver conferencia
+                <i class="fas fa-play"></i>
+            </a>
+        </article>
+
+        <!-- Card 13: César Lozano -->
+        <article class="card">
+            <div class="card-icon">
+                <i class="fas fa-smile"></i>
+            </div>
+            <h3>Actitudes Positivas ante la Adversidad</h3>
+            <p>Conferencia magistral del Dr. César Lozano sobre cómo transformar tu actitud y gestionar tus
+                emociones ante los desafíos de la vida.</p>
+            <div class="card-meta">
+                <span class="meta-item">
+                    <i class="fas fa-user"></i>
+                    Dr. César Lozano
+                </span>
+            </div>
+            <a href="https://panel.biocongreso.com/courses/5to-biocongreso-21-y-22-de-noviembre-2025/"
+                class="card-button">
+                Ver conferencia
+                <i class="fas fa-play"></i>
+            </a>
+        </article>
+
+        <!-- Card 14: Paty Bens - Día 2 -->
+        <article class="card">
+            <div class="card-icon">
+                <i class="fas fa-hands-helping"></i>
+            </div>
+            <h3>Ejercicio Final - Día 2</h3>
+            <p>Ejercicio de cierre con Paty Bens para integrar todo lo aprendido y consolidar tu proceso de
+                transformación.</p>
+            <div class="card-meta">
+                <span class="meta-item">
+                    <i class="fas fa-user"></i>
+                    Paty Bens
+                </span>
+            </div>
+            <a href="https://panel.biocongreso.com/courses/5to-biocongreso-21-y-22-de-noviembre-2025/"
+                class="card-button">
+                Ver conferencia
+                <i class="fas fa-play"></i>
+            </a>
+        </article>
+    </div>
+</main>

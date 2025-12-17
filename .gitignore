@@ -1,0 +1,51 @@
+# Sistema Operativo
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# Archivos temporales
+*.tmp
+*.temp
+*.log
+*.cache
+
+# Node modules (si se usa)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archivos de configuración local
+.env
+.env.local
+.env.*.local
+
+# Archivos de backup
+*.bak
+*.backup
+*~
+
+# Archivos de WordPress (si aplica)
+wp-config-local.php
+.htaccess.local
+
+# Archivos de prueba
+test/
+tests/
+*.test.html
+
+# Archivos antiguos (si existen)
+dashboard-complete.html

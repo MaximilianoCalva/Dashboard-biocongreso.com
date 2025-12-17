@@ -1,0 +1,108 @@
+<style>
+    /* Variables de colores BioCongreso */
+    :root {
+        --biocongreso-primary-dark: #1a2332;
+        --biocongreso-primary-medium: #2a3f5f;
+        --biocongreso-accent: #FFC107;
+        --biocongreso-white: #FFFFFF;
+    }
+
+    /* SECCIÓN 03: AVISOS Y COMUNIDAD */
+    .events-container {
+        background: white;
+        border-radius: 20px;
+        padding: 28px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .events-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 24px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #f5f5f7;
+    }
+
+    .events-header i {
+        font-size: 24px;
+        color: #25D366;
+    }
+
+    .events-header h2 {
+        font-size: 20px;
+        font-weight: 700;
+        color: #1a2332;
+        margin: 0;
+    }
+
+    .event-item {
+        padding: 20px;
+        border-radius: 14px;
+        background: #f5f5f7;
+        margin-bottom: 16px;
+        transition: all 0.3s ease;
+        border-left: 4px solid #FFC107;
+    }
+
+    .event-item:hover {
+        background: #ebebed;
+        transform: translateX(5px);
+    }
+
+    .event-date {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #1a2332;
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .event-date i {
+        font-size: 14px;
+        color: #FFC107;
+    }
+
+    .event-title {
+        font-size: 15px;
+        font-weight: 600;
+        color: #1a2332;
+        margin-bottom: 6px;
+    }
+
+    .event-description {
+        font-size: 13px;
+        color: #86868b;
+        line-height: 1.5;
+        margin: 0;
+    }
+</style>
+
+<!-- SECCIÓN 03: AVISOS Y COMUNIDAD -->
+<aside class="events-sidebar">
+    <div class="events-container">
+        <div class="events-header">
+            <i class="fab fa-whatsapp"></i>
+            <h2>Avisos y Comunidad</h2>
+        </div>
+
+        <div class="event-item"
+            style="background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); border-left: 4px solid #25D366;">
+            <div class="event-date" style="color: white;">
+                <i class="fab fa-whatsapp" style="color: white;"></i>
+                Canal de WhatsApp
+            </div>
+            <div class="event-title" style="color: white;">Únete a Nuestra Comunidad</div>
+            <div class="event-description" style="color: rgba(255,255,255,0.9);">
+                Recibe avisos importantes, actualizaciones del evento y conéctate con otros participantes del
+                BioCongreso.
+            </div>
+            <a href="https://whatsapp.com/channel/0029VbB4sIw9mrGZcf6T0Z0F" target="_blank"
+                style="display: inline-block; margin-top: 12px; padding: 8px 16px; background: white; color: #25D366; border-radius: 20px; text-decoration: none; font-weight: 600; font-size: 12px;">
+                <i class="fab fa-whatsapp"></i> Unirse al Canal
+            </a>
+        </div>
+    </div>
+</aside>
