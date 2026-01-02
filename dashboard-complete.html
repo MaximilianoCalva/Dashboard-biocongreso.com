@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Plataforma Educativa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f5f7;
+            color: #1d1d1f;
+        }
+
+        /* LAYOUT PRINCIPAL */
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 280px 1fr 320px;
+            grid-template-areas: "sidebar content events";
+            min-height: 100vh;
+            gap: 24px;
+            padding: 24px;
+        }
+
+        /* ========================================
+           SECCIÓN 01: MENÚ LATERAL
+        ======================================== */
+        .sidebar {
+            grid-area: sidebar;
+            background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
+            border-radius: 20px;
+            padding: 32px 0;
+            box-shadow: 0 10px 40px rgba(33, 147, 176, 0.3);
+            position: sticky;
+            top: 24px;
+            height: fit-content;
+        }
+
+        .sidebar-header {
+            padding: 0 24px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 24px;
+        }
+
+        .sidebar-header h2 {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sidebar-header h2 i {
+            font-size: 28px;
+        }
+
+        .menu-list {
+            list-style: none;
+            padding: 0 16px;
+        }
+
+        .menu-item {
+            margin-bottom: 8px;
+        }
+
+        .menu-link {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .menu-link:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .menu-link.active {
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-link i {
+            font-size: 20px;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* ========================================
+           SECCIÓN 02: CONTENIDO PRINCIPAL
+        ======================================== */
+        .main-content {
+            grid-area: content;
+        }
+
+        .content-header {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .content-header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+        }
+
+        .content-header p {
+            color: #86868b;
+            font-size: 16px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            border-color: #2193b0;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(33, 147, 176, 0.3);
+        }
+
+        .card-icon i {
+            font-size: 24px;
+            color: white;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1d1d1f;
+        }
+
+        .card p {
+            color: #86868b;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .card-meta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: #86868b;
+        }
+
+        .meta-item i {
+            color: #2193b0;
+        }
+
+        .card-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .card-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(33, 147, 176, 0.4);
+        }
+
+        /* ========================================
+           SECCIÓN 03: PRÓXIMOS EVENTOS
+        ======================================== */
+        .events-sidebar {
+            grid-area: events;
+        }
+
+        .events-container {
+            background: white;
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 24px;
+        }
+
+        .events-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f5f5f7;
+        }
+
+        .events-header i {
+            font-size: 24px;
+            color: #667eea;
+        }
+
+        .events-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1d1d1f;
+        }
+
+        .event-item {
+            padding: 20px;
+            border-radius: 14px;
+            background: #f5f5f7;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+            border-left: 4px solid #2193b0;
+        }
+
+        .event-item:hover {
+            background: #ebebed;
+            transform: translateX(5px);
+        }
+
+        .event-date {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #667eea;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .event-date i {
+            font-size: 14px;
+        }
+
+        .event-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 6px;
+        }
+
+        .event-description {
+            font-size: 13px;
+            color: #86868b;
+            line-height: 1.5;
+        }
+
+        .event-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
+            color: white;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ========================================
+           RESPONSIVE DESIGN
+        ======================================== */
+
+        /* Tablets */
+        @media (max-width: 1200px) {
+            .dashboard-container {
+                grid-template-columns: 260px 1fr;
+                grid-template-areas:
+                    "sidebar content"
+                    "events events";
+            }
+
+            .events-sidebar {
+                margin-top: 24px;
+            }
+
+            .events-container {
+                position: static;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "sidebar"
+                    "content"
+                    "events";
+                padding: 16px;
+                gap: 16px;
+            }
+
+            .sidebar {
+                position: static;
+                padding: 24px 0;
+            }
+
+            .sidebar-header h2 {
+                font-size: 20px;
+            }
+
+            .menu-link {
+                padding: 14px 16px;
+                font-size: 14px;
+            }
+
+            .content-header {
+                padding: 24px;
+            }
+
+            .content-header h1 {
+                font-size: 24px;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .events-container {
+                padding: 20px;
+            }
+
+            .events-header h2 {
+                font-size: 18px;
+            }
+        }
+
+        /* Menú móvil hamburguesa */
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(33, 147, 176, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .sidebar {
+                position: fixed;
+                left: -100%;
+                top: 0;
+                height: 100vh;
+                z-index: 999;
+                transition: left 0.3s ease;
+                width: 280px;
+            }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            .dashboard-container {
+                padding-top: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Botón menú móvil -->
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="dashboard-container">
+        <!-- ========================================
+             SECCIÓN 01: MENÚ LATERAL
+        ======================================== -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>
+                    <i class="fas fa-graduation-cap"></i>
+                    Mi Dashboard
+                </h2>
+            </div>
+            <nav>
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a href="#congresos" class="menu-link active">
+                            <i class="fas fa-users"></i>
+                            <span>Congresos</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#diplomados" class="menu-link">
+                            <i class="fas fa-certificate"></i>
+                            <span>Diplomados</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#talleres" class="menu-link">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <span>Talleres</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#eventos" class="menu-link">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Eventos</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- ========================================
+             SECCIÓN 02: CONTENIDO PRINCIPAL
+        ======================================== -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Tablero</h1>
+                <p>Explora nuestros programas educativos disponibles</p>
+            </div>
+
+            <div class="cards-grid">
+                <!-- Card 1: Congreso -->
+                <article class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Congreso Internacional de Medicina</h3>
+                    <p>Únete a expertos de todo el mundo en el congreso más importante del año sobre avances médicos.
+                    </p>
+                    <div class="card-meta">
+                        <span class="meta-item">
+                            <i class="fas fa-calendar"></i>
+                            15-17 Marzo
+                        </span>
+                        <span class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            3 días
+                        </span>
+                    </div>
+                    <a href="#" class="card-button">
+                        Ver detalles
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </article>
+
+                <!-- Card 2: Diplomado -->
+                <article class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Diplomado en Tanatología</h3>
+                    <p>Programa completo de formación profesional en acompañamiento y cuidados paliativos.</p>
+                    <div class="card-meta">
+                        <span class="meta-item">
+                            <i class="fas fa-calendar"></i>
+                            Inicio: Enero
+                        </span>
+                        <span class="meta-item">
+                            <i class="fas fa-book"></i>
+                            12 módulos
+                        </span>
+                    </div>
+                    <a href="#" class="card-button">
+                        Ver detalles
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </article>
+
+                <!-- Card 3: Taller -->
+                <article class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Taller de Inteligencia Artificial</h3>
+                    <p>Aprende las bases de IA y machine learning con casos prácticos y ejercicios interactivos.</p>
+                    <div class="card-meta">
+                        <span class="meta-item">
+                            <i class="fas fa-calendar"></i>
+                            20-22 Dic
+                        </span>
+                        <span class="meta-item">
+                            <i class="fas fa-users"></i>
+                            Cupos limitados
+                        </span>
+                    </div>
+                    <a href="#" class="card-button">
+                        Ver detalles
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </article>
+
+                <!-- Card 4: Evento -->
+                <article class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Webinar: Tendencias en Educación</h3>
+                    <p>Descubre las últimas tendencias en educación digital y metodologías innovadoras.</p>
+                    <div class="card-meta">
+                        <span class="meta-item">
+                            <i class="fas fa-calendar"></i>
+                            28 Diciembre
+                        </span>
+                        <span class="meta-item">
+                            <i class="fas fa-video"></i>
+                            Online
+                        </span>
+                    </div>
+                    <a href="#" class="card-button">
+                        Ver detalles
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </article>
+
+                <!-- Card 5: Congreso -->
+                <article class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Congreso de Innovación Educativa</h3>
+                    <p>Explora nuevas metodologías y herramientas para transformar la educación moderna.</p>
+                    <div class="card-meta">
+                        <span class="meta-item">
+                            <i class="fas fa-calendar"></i>
+                            5-7 Febrero
+                        </span>
+                        <span class="meta-item">
+                            <i class="fas fa-globe"></i>
+                            Híbrido
+                        </span>
+                    </div>
+                    <a href="#" class="card-button">
+                        Ver detalles
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </article>
+
+                <!-- Card 6: Diplomado -->
+                <article class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Diplomado en Gestión de Proyectos</h3>
+                    <p>Conviértete en un experto en gestión de proyectos con metodologías ágiles y tradicionales.</p>
+                    <div class="card-meta">
+                        <span class="meta-item">
+                            <i class="fas fa-calendar"></i>
+                            Inicio: Marzo
+                        </span>
+                        <span class="meta-item">
+                            <i class="fas fa-award"></i>
+                            Certificado
+                        </span>
+                    </div>
+                    <a href="#" class="card-button">
+                        Ver detalles
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </article>
+            </div>
+        </main>
+
+        <!-- ========================================
+             SECCIÓN 03: PRÓXIMOS EVENTOS
+        ======================================== -->
+        <aside class="events-sidebar">
+            <div class="events-container">
+                <div class="events-header">
+                    <i class="fas fa-bell"></i>
+                    <h2>Próximos Eventos</h2>
+                </div>
+
+                <div class="event-item">
+                    <div class="event-date">
+                        <i class="fas fa-calendar-day"></i>
+                        20 Diciembre 2025
+                    </div>
+                    <div class="event-title">Inicio Taller de IA</div>
+                    <div class="event-description">
+                        Comienza tu viaje en inteligencia artificial con expertos del sector.
+                    </div>
+                    <span class="event-badge">Próximamente</span>
+                </div>
+
+                <div class="event-item">
+                    <div class="event-date">
+                        <i class="fas fa-calendar-day"></i>
+                        28 Diciembre 2025
+                    </div>
+                    <div class="event-title">Webinar Educación Digital</div>
+                    <div class="event-description">
+                        Sesión online sobre las últimas tendencias en educación.
+                    </div>
+                    <span class="event-badge">Inscripción abierta</span>
+                </div>
+
+                <div class="event-item">
+                    <div class="event-date">
+                        <i class="fas fa-calendar-day"></i>
+                        15 Enero 2026
+                    </div>
+                    <div class="event-title">Inicio Diplomado Tanatología</div>
+                    <div class="event-description">
+                        Primera sesión del programa de formación profesional.
+                    </div>
+                    <span class="event-badge">Cupos limitados</span>
+                </div>
+
+                <div class="event-item">
+                    <div class="event-date">
+                        <i class="fas fa-calendar-day"></i>
+                        5 Febrero 2026
+                    </div>
+                    <div class="event-title">Congreso Innovación Educativa</div>
+                    <div class="event-description">
+                        Evento híbrido con ponentes internacionales.
+                    </div>
+                    <span class="event-badge">Registro abierto</span>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        // Función para toggle del menú móvil
+        function toggleMobileMenu() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        // Cerrar menú al hacer click fuera en móvil
+        document.addEventListener('click', function (event) {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+
+            if (window.innerWidth <= 768) {
+                if (!sidebar.contains(event.target) && !toggle.contains(event.target)) {
+                    sidebar.classList.remove('active');
+                }
+            }
+        });
+
+        // Activar link del menú al hacer click
+        document.querySelectorAll('.menu-link').forEach(link => {
+            link.addEventListener('click', function (e) {
+                document.querySelectorAll('.menu-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+
+                // Cerrar menú móvil después de seleccionar
+                if (window.innerWidth <= 768) {
+                    document.getElementById('sidebar').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
