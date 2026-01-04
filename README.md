@@ -138,7 +138,7 @@ Usa el widget **HTML** de Elementor para cada columna.
 
 ### URLs del Sistema
 - **Panel Principal**: `https://panel.biocongreso.com/`
-- **Dashboard de Usuario**: `https://panel.biocongreso.com/usuario/`
+- **Dashboard de Usuario**: `https://panel.biocongreso.com/user`
 - **WhatsApp Soporte**: `https://wa.me/5213334054655`
 - **Logout**: `https://panel.biocongreso.com/wp-login.php?action=logout&redirect_to=https%3A%2F%2Fpanel.biocongreso.com`
 
